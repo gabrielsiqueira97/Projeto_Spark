@@ -44,4 +44,4 @@ spark.sql("SHOW TABLES").show()
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC select distinct nm_regiao from lh_gold.tb_leitos_internacoes
+# MAGIC --select distinct nm_regiao from lh_gold.tb_leitos_internacoes

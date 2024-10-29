@@ -8,7 +8,6 @@
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
-from pyspark.sql.functions import col, to_int
 from pyspark.sql.types import * 
 
 # COMMAND ----------
@@ -26,8 +25,8 @@ spark = SparkSession.builder \
 # Usa o codec Snappy para compressão rápida, otimizando tempo de leitura e escrita    
 # Habilita otimizações adaptativas, ajustando o número de partições dinamicamente com base no tamanho dos dados
 
-bronze_isolamento_path = "/LakeHouse/bronze/covid/isolamento"
-silver_isolamento_path = "/LakeHouse/silver/covid/isolamento"
+bronze_isolamento_path = "/LakeHouse/bronze/covid/isolamento/"
+silver_isolamento_path = "/LakeHouse/silver/covid/isolamento/"
 
 
 # COMMAND ----------
@@ -38,7 +37,7 @@ silver_isolamento_path = "/LakeHouse/silver/covid/isolamento"
 # COMMAND ----------
 
 df_bronze_isolamento = spark.read.format("parquet").load(bronze_isolamento_path)
-display(df_bronze_isolamento)
+display(df_bronze_isolamento.limit(10))
 
 # COMMAND ----------
 
@@ -78,8 +77,8 @@ df_isolamento_silver.count()
 
 # COMMAND ----------
 
-df_silver_isolamento_processado = spark.read.format("parquet").load(silver_isolamento_path)
-display(df_silver_isolamento_processado)
+#df_silver_isolamento_processado = spark.read.format("parquet").load(silver_isolamento_path)
+#display(df_silver_isolamento_processado)
 
 # COMMAND ----------
 

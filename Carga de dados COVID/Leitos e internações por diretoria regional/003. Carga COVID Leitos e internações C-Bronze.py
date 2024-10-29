@@ -58,7 +58,7 @@ df_leitos_internacoes = spark.read.option('header','true') \
     .withColumn("dt_carga",current_date())
 distinct_file_names = df_leitos_internacoes.select('nm_arquivo').distinct()
 
-display(df_leitos_internacoes)
+display(df_leitos_internacoes.limit(10))
 
 # COMMAND ----------
 
@@ -66,10 +66,10 @@ df_leitos_internacoes.write.mode('overwrite').partitionBy('nome_drs').parquet(br
 
 # COMMAND ----------
 
-distinct_filenames.unpersist()
-if distinct_filenames.select("nm_arquivo").distinct().count() > 0:
-    filenames = distinct_filenames.select("nm_arquivo").distinct().collect()
+#distinct_filenames.unpersist()
+#if distinct_filenames.select("nm_arquivo").distinct().count() > 0:
+#    filenames = distinct_filenames.select("nm_arquivo").distinct().collect()
 
-    for row in filenames:
-        src_path = row.nm_arquivo
-        dbutils.fs.mv(lz_path_in + "/" + src_path, lz_path_out)
+#    for row in filenames:
+#        src_path = row.nm_arquivo
+#        dbutils.fs.mv(lz_path_in + "/" + src_path, lz_path_out)

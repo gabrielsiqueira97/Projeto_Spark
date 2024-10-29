@@ -2,7 +2,6 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
-from pyspark.sql.functions import monotonically_increasing_id
 
 # COMMAND ----------
 
@@ -78,5 +77,5 @@ display(df_gold_fato_isolamento_sk)
 
 # COMMAND ----------
 
-spark.sql(f"DROP TABLE IF EXISTS delta.`{gold_isolamento_path}/{tb_destino_ft_isolamento}`")
+#spark.sql(f"DROP TABLE IF EXISTS delta.`{gold_isolamento_path}/{tb_destino_ft_isolamento}`")
 

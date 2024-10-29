@@ -48,7 +48,7 @@ df_indice_isolamento = spark.read.option("header","true") \
 
 distinct_filenames = df_indice_isolamento.select("nm_arquivo").distinct()
 
-display(df_indice_isolamento)
+display(df_indice_isolamento.limit(10))
 
 # COMMAND ----------
 
@@ -57,10 +57,10 @@ df_indice_isolamento.write.mode("overwrite").partitionBy("ds_municipio").parquet
 
 # COMMAND ----------
 
-distinct_filenames.unpersist()
-if distinct_filenames.select("nm_arquivo").distinct().count() > 0:
-    filenames = distinct_filenames.select("nm_arquivo").distinct().collect()
+#distinct_filenames.unpersist()
+#if distinct_filenames.select("nm_arquivo").distinct().count() > 0:
+#    filenames = distinct_filenames.select("nm_arquivo").distinct().collect()
 
-    for row in filenames:
-        src_path = row.nm_arquivo
-        dbutils.fs.mv(lz_path_in + "/" + src_path, lz_path_out)
+#    for row in filenames:
+#        src_path = row.nm_arquivo
+#        dbutils.fs.mv(lz_path_in + "/" + src_path, lz_path_out)
